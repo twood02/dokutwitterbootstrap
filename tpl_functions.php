@@ -380,7 +380,7 @@ function _tpl_output_search_bar()
     if(!$autocomplete) print 'autocomplete="off" ';
     print 'id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" />';
 
-    print '<button type="submit" value="" class="button btn" title="'.$lang['btn_search'].'">';
+    print '<button type="submit" value="" class="button btn btn-sm" title="'.$lang['btn_search'].'">';
     print '<i class="glyphicon glyphicon-search"></i></button>';
 
     if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';

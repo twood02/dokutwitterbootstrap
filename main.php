@@ -51,6 +51,11 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
               <a class="navbar-brand" href="./"><?php echo $conf['title']; ?></a>
             </div>
           <div class="navbar-collapse collapse">
+          	<ul class="nav navbar-nav">
+		        <li>
+		          <a href="../getting-started">Getting started</a>
+		        </li>
+		    </ul>
             <div class="navbar-form pull-right">
                 <?php _tpl_output_search_bar(); ?>
             </div>
