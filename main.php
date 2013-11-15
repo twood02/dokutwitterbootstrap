@@ -66,11 +66,6 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
                     //echo 'Logged in as <a href="#" class="navbar-link">'.$username.'</a>';
                 ?>
             </p>
-            <ul class="nav navbar-nav">
-              <?php
-                _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
-              ?>
-            </ul>
 
           </div><!--/.navbar-collapse -->
         </div>
@@ -79,22 +74,9 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
 
     <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
     <?php tpl_includeFile('header.html') ?>
-
-
         <div class="container">
         <!-- ********** ASIDE ********** -->
           <div class="row">
-            <div class="col-md-3">
-              <?php if ($conf['sidebar']) { ?>
-
-                  <div class="sidebar" id="sidetoc" role="navigation">
-                    <div class="list-group">
-                        <?php _tpl_toc_to_twitter_bootstrap(); ?>
-                    </div>
-                  </div>
-
-              <?php } ?>
-            </div>
             <div class="col-md-9">
               <div class="row">
 
@@ -115,37 +97,51 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
                     </div>
               </div><!--/row-->
             </div><!--/col-md-9-->
+            
+            <div class="col-md-3">
+            	<div class="sidebar" id="sidetoc" role="navigation">
+                    <div class="list-group">
+                    	<ul class="nav list-group">
+			              <?php
+			                _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
+			              ?>
+			            </ul>
+			             <?php if ($conf['sidebar']) { ?>
+			              	<?php _tpl_toc_to_twitter_bootstrap(); ?>
+			              <?php } ?>
+                    </div>
+                  </div>
+            </div>
           </div><!--/row-->
         </div><!-- container -->
-
         <div class="clearer"></div>
         <hr class="a11y" />
 
     <!-- ********** FOOTER ********** -->
     <footer class="navbar navbar-static-bottom">
 		<div class="container">
-		      <div class="row">
-		        <div class="col-md-12">
-		              <?php _tpl_output_page_tools($showTools, 'li'); ?>
-		              <br />
-		              <div class="clearer"></div>
-		              <div>
-		              <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-		
-		              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
-		              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
-		              <?php tpl_includeFile('footer.html') ?>
-		              </div>
-		              <div class="clearer"></div>
-		              <div>
-		                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
-		                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
-		                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
-		                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
-		                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
-		              </div>
-		        </div>
-		      </div>
+	      <div class="row">
+	        <div class="col-md-12">
+	              <?php _tpl_output_page_tools($showTools, 'li'); ?>
+	              <br />
+	              <div class="clearer"></div>
+	              <div>
+	              <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
+	
+	              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+	              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
+	              <?php tpl_includeFile('footer.html') ?>
+	              </div>
+	              <div class="clearer"></div>
+	              <div>
+	                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
+	                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
+	                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
+	                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
+	                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
+	              </div>
+	        </div>
+	      </div>
 		  </div>
     </footer>
 

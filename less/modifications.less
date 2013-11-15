@@ -23,6 +23,47 @@ body {
 	    }
     }
 }
+
+.sidebar{
+	border-left:solid 1px #ccc;
+	
+	background: #fff;
+	background: -moz-linear-gradient(left,  #dddddd 0%, #f4f4f4 2%, #ffffff 7%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#dddddd), color-stop(2%,#f4f4f4), color-stop(7%,#ffffff), color-stop(100%,#ffffff));
+	background: -webkit-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: -o-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: -ms-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: linear-gradient(to right,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#ffffff',GradientType=1 );
+
+	
+	.nav.list-group{
+	    li{
+		    bdi{
+				display: block;
+			}
+	    	a,
+	    	bdi a{
+		    	display: block;
+			    padding: 10px 15px;
+				color:@link-color;
+				border-bottom:solid 1px #eee;
+				&:hover{
+					background:@gray-lighter;
+				}
+	    	}
+	    }
+	}
+}
+
+.pad{
+	.page{
+		.centeralign {
+			text-align: left;
+		}
+	}
+}
+
 footer{
 	text-align: center;
 	.nav.navbar-nav{
