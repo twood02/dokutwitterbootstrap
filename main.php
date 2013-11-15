@@ -23,10 +23,7 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
-    <link href="<?php echo tpl_getMediaFile(array("css/modifications.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/dokuwikicompatibility.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/bootstrap.min.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/bootstrap-theme.min.css")); ?>" rel="stylesheet">
+    <link href="<?php echo tpl_getMediaFile(array("css/style.css")); ?>" rel="stylesheet">
 
 </head>
 
@@ -71,7 +68,6 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
             </p>
             <ul class="nav navbar-nav">
               <?php
-                tpl_includeFile('nav.html');
                 _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
               ?>
             </ul>
@@ -155,14 +151,5 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
 
     <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
     <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <!-- load any scripts that may require a newer jQuery library than DokuWiki provides. -->
-    <script src="<?php echo tpl_getMediaFile(array("js/bootstrap.min.js")); ?>"></script>
-    <script src="<?php echo tpl_getMediaFile(array("js/change_dokuwiki_structure.js")); ?>"></script>
-
-    <!-- restore jQuery for DokuWiki -->
-    <script src="<?php echo tpl_getMediaFile(array("js/restore_dokuwikis_jquery.js")); ?>"></script>
 </body>
 </html>

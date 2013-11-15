@@ -6,6 +6,19 @@ body {
     padding: 9px 0;
 }
 
+.nav.navbar-nav{
+    li{
+	    bdi{
+	    	display: block;
+			line-height: 20px;
+			padding:15px 0;
+			a{
+				color:@text-color;
+			}
+	    }
+    }
+}
+
 @media (max-width: 980px) {
     /* Enable use of floated navbar text */
     .navbar-text.pull-right {
@@ -23,4 +36,17 @@ body {
         width: auto;
         top: 0;
   }
+}
+
+/* Rules to help make DokuWiki functionality a bit more useful/not so ugly. The
+ * DokuWiki CSS can clash with the Bootstrap CSS. 
+ * */
+#config__manager .label {
+    white-space: normal;
+}
+
+.editBar .edit,
+#dw__editform textarea 
+{
+    width: auto;
 }
