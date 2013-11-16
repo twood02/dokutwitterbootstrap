@@ -7,6 +7,7 @@
  * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
  */
 
+		        
 if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 @require_once(dirname(__FILE__).'/tpl_functions.php'); /* include hook for template functions */
 
@@ -52,9 +53,9 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
             </div>
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
-		        <li>
-		          <a href="../getting-started">Getting started</a>
-		        </li>
+		        <?php 
+		        	echo trim(strip_tags(html_entity_decode(tpl_include_page('topbar', false)), '<li><a>'));
+		        ?>
 		    </ul>
             <div class="navbar-form pull-right">
                 <?php _tpl_output_search_bar(); ?>
@@ -106,14 +107,15 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
             <div class="col-md-3">
             	<div class="sidebar" id="sidetoc" role="navigation">
                     <div class="list-group">
+		             <?php if ($conf['sidebar']) { ?>
+		              	<?php _tpl_toc_to_twitter_bootstrap(); ?>
+		              <?php } ?>
                     	<ul class="nav list-group">
+                    	  <li class="list-group-item nav-header">Tools</li>
 			              <?php
 			                _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
 			              ?>
 			            </ul>
-			             <?php if ($conf['sidebar']) { ?>
-			              	<?php _tpl_toc_to_twitter_bootstrap(); ?>
-			              <?php } ?>
                     </div>
                   </div>
             </div>

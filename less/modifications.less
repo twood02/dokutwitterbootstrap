@@ -5,6 +5,11 @@ body {
 .sidebar-nav {
     padding: 9px 0;
 }
+
+.navbar-fixed-top{
+	overflow: hidden;
+}
+
 #dw__search{
 	#qsearch__in{
 		padding:.15em .5em;
@@ -19,6 +24,44 @@ body {
 			background:lighten(@link-color, 20%);
 		}
 	}
+}
+
+#config__manager{
+
+	table{
+		tr{
+			border-bottom:solid 1px #eee;
+			td{			
+				padding-top:1em;
+				padding-bottom:2em;
+			}
+			td.label{
+				font-size: 1.125em;
+				padding: 0;
+				span.outkey{
+					display: block;
+					clear:both;
+					margin-top: 0;
+					margin-left: 0;
+					font-weight: normal;
+				}
+				label{
+					margin-top:0;
+					margin-bottom:0;
+					color:@text-color;
+					font-weight: normal;
+					b, strong{
+						font-weight: normal;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+.editbutton_section{
+	display:none;
 }
 
 .nav.navbar-nav{
@@ -72,6 +115,7 @@ body {
 }
 
 .pad{
+	margin-top: 2em;
 	.page{
 		.centeralign {
 			text-align: left;
