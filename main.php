@@ -85,20 +85,14 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
           <div class="row">
             <div class="col-md-9">
               <div class="row">
-
-                    <div class="col-md-9" id="dokuwiki__content">
-
+                    <div id="dokuwiki__content">
                         <div class="pad">
-
                             <div class="page">
-
                                 <?php html_msgarea(); /* occasional error and info messages */ ?>
                                 <?php tpl_flush(); ?>
                                 <?php tpl_content(false); ?>
                                 <div class="clearer"></div>
-
                             </div>
-
                         </div>
                     </div>
               </div><!--/row-->
