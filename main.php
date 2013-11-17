@@ -65,7 +65,7 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
                 <?php
                     if ($_SERVER['REMOTE_USER']) {
                         echo '<span class="user">';
-                        tpl_userinfo();
+                        tpl_simple_userinfo();
                         echo '</span>';
                     }
                     //TODO: If could link to user's profile? If so, wrap in:
@@ -96,6 +96,50 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
                         </div>
                     </div>
               </div><!--/row-->
+              
+              <div class="row">
+	              <!-- ********** FOOTER ********** -->
+				    <footer class="navbar navbar-static-bottom">
+						<div class="container">
+					      <div class="row">
+					        <div class="col-md-9">
+					              <div>
+					              <hr />
+					              <?php 
+					              	$fn = $INFO['filepath'];
+								    if(!$conf['fullpath']) {
+								        if($INFO['rev']) {
+								            $fn = str_replace(fullpath($conf['olddir']).'/', '', $fn);
+								        } else {
+								            $fn = str_replace(fullpath($conf['datadir']).'/', '', $fn);
+								        }
+								    }
+								    $fn   = utf8_decodeFN($fn);
+					              	if($fn !== 'start.txt'){
+						              	tpl_simple_pageinfo();
+					              	}
+					              ?>
+					              <div class="clearer"></div>
+					              <?php _tpl_output_page_tools($showTools, 'li'); ?>
+								  <hr />
+					              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+					              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
+					              <?php //tpl_includeFile('footer.html') ?>
+					              </div>
+					              <div class="clearer"></div>
+					              <div>
+					                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
+					                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
+					                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
+					                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
+					                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
+					              </div>
+					        </div>
+					      </div>
+						  </div>
+				    </footer>
+              </div>
+              
             </div><!--/col-md-9-->
             
             <div class="col-md-3">
@@ -117,34 +161,6 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
         </div><!-- container -->
         <div class="clearer"></div>
         <hr class="a11y" />
-
-    <!-- ********** FOOTER ********** -->
-    <footer class="navbar navbar-static-bottom">
-		<div class="container">
-	      <div class="row">
-	        <div class="col-md-12">
-	              <?php _tpl_output_page_tools($showTools, 'li'); ?>
-	              <br />
-	              <div class="clearer"></div>
-	              <div>
-	              <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-	
-	              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
-	              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
-	              <?php tpl_includeFile('footer.html') ?>
-	              </div>
-	              <div class="clearer"></div>
-	              <div>
-	                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
-	                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
-	                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
-	                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
-	                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
-	              </div>
-	        </div>
-	      </div>
-		  </div>
-    </footer>
 
     </div></div><!-- /site -->
 
