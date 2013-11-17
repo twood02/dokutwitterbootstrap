@@ -110,6 +110,72 @@ function _tpl_action($type, $link=0, $wrapper=0) {
 }
 
 
+/**
+ * Print some info about the current page
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @param bool $ret return content instead of printing it
+ * @return bool|string
+ */
+function tpl_simple_pageinfo($ret = false) {
+    global $conf;
+    global $lang;
+    global $INFO;
+    global $ID;
+
+    // return if we are not allowed to view the page
+    if(!auth_quickaclcheck($ID)) {
+        return false;
+    }
+    $date = dformat($INFO['lastmod']);
+
+    // print it
+    if($INFO['exists']) {
+        $out = '';
+        $out .= 'Modificación';
+        $out .= ': ';
+        $out .= $date;
+        if($INFO['editor']) {
+            $out .= ' '.$lang['by'].' ';
+            $out .= '<bdi>'.editorinfo($INFO['editor']).'</bdi>';
+        } else {
+            $out .= ' ('.$lang['external_edit'].')';
+        }
+        if($INFO['locked']) {
+            $out .= ' Â· ';
+            $out .= $lang['lockedby'];
+            $out .= ': ';
+            $out .= '<bdi>'.editorinfo($INFO['locked']).'</bdi>';
+        }
+        if($ret) {
+            return $out;
+        } else {
+            echo $out;
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Print info if the user is logged in
+ * and show full name in that case
+ *
+ * Could be enhanced with a profile link in future?
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @return bool
+ */
+function tpl_simple_userinfo() {
+    global $lang;
+    global $INFO;
+    if(isset($_SERVER['REMOTE_USER'])) {
+        print '<bdi title="'.hsc($INFO['userinfo']['name']).'">'.hsc($_SERVER['REMOTE_USER']).'</bdi>';
+        return true;
+    }
+    return false;
+}
+
 
 /* fallbacks for things missing in older DokuWiki versions
 ********************************************************************/
@@ -355,10 +421,12 @@ function _tpl_output_page_tools($showTools = true, $element = 'li'){
             $content = tpl_action('revert', $textonly, '', true);
             if ($content != '') { echo $elementbegin.$content.$spandivider.$elementend; }
 
+/*
             echo $elementbegin;
             $content = tpl_action('top', $textonly, '', true);
             echo $content;
             echo $elementend;
+*/
         echo '</ul>';
     }
 }
