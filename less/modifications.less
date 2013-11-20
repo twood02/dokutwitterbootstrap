@@ -2,6 +2,7 @@ body {
     padding-top: 50px;
     padding-bottom: 40px;
 }
+
 .sidebar-nav {
     padding: 9px 0;
 }
@@ -9,6 +10,39 @@ body {
 .navbar-fixed-top{
 	overflow: hidden;
 }
+
+a{
+	&.wikilink2{
+		color:#800;
+		padding:.125em;
+		border-radius: .125em;
+		position: relative;
+		&:hover,
+		&:focus{
+			background:#fdfdfd;
+			&:after{
+				position: absolute;
+				content: "Crear";
+				top:-.5em;
+				right:-2.25em;
+				text-align: right;
+				font-size:.75em;
+				color:@link-color;
+			}
+		}
+	}
+}
+
+.footnotes{
+	font-size: .875em;
+	border-top:dotted 1px #aaa;
+	padding:.5em 1em .5em;
+	margin-top:2em;
+	.fn{
+		margin-bottom: 1em;
+	}
+}
+
 
 #dw__search{
 	#qsearch__in{
@@ -61,7 +95,28 @@ body {
 }
 
 .editbutton_section{
-	display:none;
+	text-align: right;
+	font-size:.9em;
+	border:none;
+	border-bottom:dotted 1px #ddd;
+	margin-top:-3em;
+	margin-bottom:2em;
+	padding:.25em 0 0;
+	&>.button>.no>.button{
+		border:dashed 1px #ddd;
+		border-bottom:none;
+		border-radius: 0 0 .25em .25em;
+		background:#fefefe;
+		color:@gray-light;
+		padding:.25em .75em;
+		&:hover,
+		&:focus{
+			background: @link-color;
+			color:@body-bg;
+			border:solid 1px @link-color;
+		}
+		
+	}
 }
 
 .nav.navbar-nav{
@@ -132,6 +187,37 @@ footer{
 		    bdi{
 				a{
 					color:@link-color;
+				}
+		    }
+		    a, 
+		    bdi a{
+			    color:@gray;
+			    padding:10px;
+				border-radius: .25em;
+				&:hover,
+				&:focus{
+					background: none;
+					color:@link-color;
+				}
+				
+			    &.action.edit,
+			    &.action.create{
+					border:dashed 1px #ddd;
+					border-radius: .25em;
+					color:@link-color;
+					&:hover,
+					&:focus{
+						background: @link-color;
+						color:@body-bg;
+					}
+				}
+				&.wikilink1{
+					color:@link-color;
+					&:hover,
+					&:focus{
+						background: @link-color;
+						color:@body-bg;
+					}
 				}
 		    }
 	    }
