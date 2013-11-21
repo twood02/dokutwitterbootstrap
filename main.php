@@ -54,7 +54,7 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav">
 		        <?php 
-		        	echo trim(strip_tags(html_entity_decode(tpl_include_page('topbar', false)), '<li><a>'));
+		        	echo trim(strip_tags(html_entity_decode(tpl_include_page('wiki:topbar', false)), '<li><a>'));
 		        ?>
 		    </ul>
             <div class="navbar-form pull-right">
