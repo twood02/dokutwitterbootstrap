@@ -1,14 +1,39 @@
 body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 40px;
 }
+
+.navbar-fixed-top{
+	overflow: hidden;
+}
+@media (max-width:979px){
+	.navbar-fixed-top{
+		position:relative !important;
+	}
+}
+@media (min-width:980px){
+	body {
+	    padding-top: 50px;
+	}	
+}
+
 
 .sidebar-nav {
     padding: 9px 0;
 }
 
-.navbar-fixed-top{
-	overflow: hidden;
+#sidetoc.sidebar div.list-group ul.nav li{
+	a, bdi a{font-size:.9em;}
+	
+	&.level-1 {a, bdi a{padding-left:.5em;}}
+	&.level-2 {a, bdi a{padding-left:1em;}}
+	&.level-3 {a, bdi a{padding-left::1.5em;}}
+	&.level-4 {a, bdi a{padding-left:2em;}}
+	&.level-5 {a, bdi a{padding-left:2.5em;}}
+	&.level-6 {a, bdi a{padding-left:3em;}}
+}
+div.dokuwiki div.tags{
+	text-align: center;
 }
 
 a{
@@ -99,7 +124,7 @@ a{
 	font-size:.9em;
 	border:none;
 	border-bottom:dotted 1px #ddd;
-	margin-top:-3em;
+	margin-top:-2.5em;
 	margin-bottom:2em;
 	padding:.25em 0 0;
 	&>.button>.no>.button{
@@ -114,6 +139,7 @@ a{
 			background: @link-color;
 			color:@body-bg;
 			border:solid 1px @link-color;
+			border-bottom:none;
 		}
 		
 	}
@@ -175,6 +201,66 @@ a{
 		.centeralign {
 			text-align: left;
 		}
+		.cloud{
+			font-size:1.25em;
+			margin:2.5em 4em;
+			text-align: center;
+		}
+	}
+}
+
+#wiki__editbar{
+	.editButtons{
+		margin:1em .25em;
+		
+		.button{
+			color:#000;
+		    padding:10px;
+			border-radius: .25em;
+			border:none;
+			background: #efefef;
+			margin-right:1em;
+			
+			&:hover,
+			&:focus{
+				background: @link-color;
+				color:#fff;
+			}
+		}
+		input[disabled="disabled"]{
+			&.button{
+				color:@gray;
+				background: @gray-lighter;
+			}
+			
+			&#edbtn__save.button{
+				color:@gray !important;
+				background: @gray-lighter;
+			}
+		}
+		#edbtn__save.button{
+			border:dashed 1px #ccc;
+			border-radius: .25em;
+			color:#eee !important;
+			background: darken(@link-color, 2%);
+			
+			&:hover,
+			&:focus{
+				background: lighten(@link-color, 2%);
+				color:#fff !important;
+			}
+		}
+		input[name="do[draftdel]"].button{
+			
+			&:hover,
+			&:focus{
+				background: #d00;
+				color:#fff;
+			}
+		}
+	}
+	.summary{
+		margin:.5em 0;
 	}
 }
 
