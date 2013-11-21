@@ -334,14 +334,15 @@ function _tpl_toc_to_twitter_bootstrap_event_hander_dump_level($data, $header=''
     $ret .= '<li class="divider"></li>';
 
     $first = true;
-    $li_inner = ' class ="active"';
+    $li_classes = '';
 
     //Only supports top level links for now.
     foreach($data as $heading)
     {
-        $ret .= '<li' . $li_inner . '><a href="' . $heading['link'] . '">'. $chevronHTML . $heading['title'] . '</a></li>';
-
-        $li_inner = '';
+    	$li_classes .= ' level-' . $heading['level'];
+        $ret .= '<li class="' . $li_classes . '"><a href="' . $heading['link'] . '">'. $chevronHTML . $heading['title'] . '</a></li>';
+		
+		$li_classes = '';
     }
 
     $ret .= '<li class="divider"></li>';
