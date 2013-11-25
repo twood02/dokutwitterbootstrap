@@ -110,6 +110,72 @@ function _tpl_action($type, $link=0, $wrapper=0) {
 }
 
 
+/**
+ * Print some info about the current page
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @param bool $ret return content instead of printing it
+ * @return bool|string
+ */
+function tpl_simple_pageinfo($ret = false) {
+    global $conf;
+    global $lang;
+    global $INFO;
+    global $ID;
+
+    // return if we are not allowed to view the page
+    if(!auth_quickaclcheck($ID)) {
+        return false;
+    }
+    $date = dformat($INFO['lastmod']);
+
+    // print it
+    if($INFO['exists']) {
+        $out = '';
+        $out .= 'Modificación';
+        $out .= ': ';
+        $out .= $date;
+        if($INFO['editor']) {
+            $out .= ' '.$lang['by'].' ';
+            $out .= '<bdi>'.editorinfo($INFO['editor']).'</bdi>';
+        } else {
+            $out .= ' ('.$lang['external_edit'].')';
+        }
+        if($INFO['locked']) {
+            $out .= ' Â· ';
+            $out .= $lang['lockedby'];
+            $out .= ': ';
+            $out .= '<bdi>'.editorinfo($INFO['locked']).'</bdi>';
+        }
+        if($ret) {
+            return $out;
+        } else {
+            echo $out;
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Print info if the user is logged in
+ * and show full name in that case
+ *
+ * Could be enhanced with a profile link in future?
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @return bool
+ */
+function tpl_simple_userinfo() {
+    global $lang;
+    global $INFO;
+    if(isset($_SERVER['REMOTE_USER'])) {
+        print '<bdi title="'.hsc($INFO['userinfo']['name']).'">'.hsc($_SERVER['REMOTE_USER']).'</bdi>';
+        return true;
+    }
+    return false;
+}
+
 
 /* fallbacks for things missing in older DokuWiki versions
 ********************************************************************/
@@ -268,14 +334,15 @@ function _tpl_toc_to_twitter_bootstrap_event_hander_dump_level($data, $header=''
     $ret .= '<li class="divider"></li>';
 
     $first = true;
-    $li_inner = ' class ="active"';
+    $li_classes = '';
 
     //Only supports top level links for now.
     foreach($data as $heading)
     {
-        $ret .= '<li' . $li_inner . '><a href="#' . $heading['hid'] . '">'. $chevronHTML . $heading['title'] . '</a></li>';
-
-        $li_inner = '';
+    	$li_classes .= ' level-' . $heading['level'];
+        $ret .= '<li class="' . $li_classes . '"><a href="' . $heading['link'] . '">'. $chevronHTML . $heading['title'] . '</a></li>';
+		
+		$li_classes = '';
     }
 
     $ret .= '<li class="divider"></li>';
@@ -355,10 +422,12 @@ function _tpl_output_page_tools($showTools = true, $element = 'li'){
             $content = tpl_action('revert', $textonly, '', true);
             if ($content != '') { echo $elementbegin.$content.$spandivider.$elementend; }
 
+/*
             echo $elementbegin;
             $content = tpl_action('top', $textonly, '', true);
             echo $content;
             echo $elementend;
+*/
         echo '</ul>';
     }
 }
@@ -380,7 +449,7 @@ function _tpl_output_search_bar()
     if(!$autocomplete) print 'autocomplete="off" ';
     print 'id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" />';
 
-    print '<button type="submit" value="" class="button btn" title="'.$lang['btn_search'].'">';
+    print '<button type="submit" value="" class="button btn btn-sm" title="'.$lang['btn_search'].'">';
     print '<i class="glyphicon glyphicon-search"></i></button>';
 
     if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';

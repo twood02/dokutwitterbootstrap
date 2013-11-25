@@ -1,0 +1,343 @@
+body {
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+.navbar-fixed-top{
+	overflow: hidden;
+}
+@media (max-width:979px){
+	.navbar-fixed-top{
+		position:relative !important;
+	}
+}
+@media (min-width:980px){
+	body {
+	    padding-top: 50px;
+	}	
+}
+
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+#sidetoc.sidebar div.list-group ul.nav li{
+	a, bdi a{font-size:.9em;}
+	
+	&.level-1 {a, bdi a{padding-left:.5em;}}
+	&.level-2 {a, bdi a{padding-left:1em;}}
+	&.level-3 {a, bdi a{padding-left::1.5em;}}
+	&.level-4 {a, bdi a{padding-left:2em;}}
+	&.level-5 {a, bdi a{padding-left:2.5em;}}
+	&.level-6 {a, bdi a{padding-left:3em;}}
+}
+div.dokuwiki div.tags{
+	text-align: center;
+}
+
+a{
+	&.wikilink2{
+		color:#800;
+		padding:.125em;
+		border-radius: .125em;
+		position: relative;
+		&:hover,
+		&:focus{
+			background:#fdfdfd;
+			&:after{
+				position: absolute;
+				content: "Crear";
+				top:-.5em;
+				right:-2.25em;
+				text-align: right;
+				font-size:.75em;
+				color:@link-color;
+			}
+		}
+	}
+}
+
+.footnotes{
+	font-size: .875em;
+	border-top:dotted 1px #aaa;
+	padding:.5em 1em .5em;
+	margin-top:2em;
+	.fn{
+		margin-bottom: 1em;
+	}
+}
+
+
+#dw__search{
+	#qsearch__in{
+		padding:.15em .5em;
+		height:2.15em;
+		border:none;
+		border-radius: .25em 0 0 .25em;
+	}
+	.button.btn.btn-sm{
+		margin-top: -.25em;
+		margin-left: -.25em;
+		&:hover{
+			background:lighten(@link-color, 20%);
+		}
+	}
+}
+
+#config__manager{
+
+	table{
+		tr{
+			border-bottom:solid 1px #eee;
+			td{			
+				padding-top:1em;
+				padding-bottom:2em;
+			}
+			td.label{
+				font-size: 1.125em;
+				padding: 0;
+				span.outkey{
+					display: block;
+					clear:both;
+					margin-top: 0;
+					margin-left: 0;
+					font-weight: normal;
+				}
+				label{
+					margin-top:0;
+					margin-bottom:0;
+					color:@text-color;
+					font-weight: normal;
+					b, strong{
+						font-weight: normal;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+.editbutton_section{
+	text-align: right;
+	font-size:.9em;
+	border:none;
+	border-bottom:dotted 1px #ddd;
+	margin-top:-2.5em;
+	margin-bottom:2em;
+	padding:.25em 0 0;
+	&>.button>.no>.button{
+		border:dashed 1px #ddd;
+		border-bottom:none;
+		border-radius: 0 0 .25em .25em;
+		background:#fefefe;
+		color:@gray-light;
+		padding:.25em .75em;
+		&:hover,
+		&:focus{
+			background: @link-color;
+			color:@body-bg;
+			border:solid 1px @link-color;
+			border-bottom:none;
+		}
+		
+	}
+}
+
+.nav.navbar-nav{
+    li{
+	    bdi{
+	    	display: block;
+			line-height: 20px;
+			a{	
+				display: block;
+				padding:15px;
+				line-height: 20px;
+				color:darken(@gray-light, 10%);
+				&:hover{
+					background:@gray-lighter;
+				}
+			}
+	    }
+    }
+}
+
+.sidebar{
+	border-left:solid 1px #ccc;
+	
+	background: #fff;
+	background: -moz-linear-gradient(left,  #dddddd 0%, #f4f4f4 2%, #ffffff 7%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#dddddd), color-stop(2%,#f4f4f4), color-stop(7%,#ffffff), color-stop(100%,#ffffff));
+	background: -webkit-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: -o-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: -ms-linear-gradient(left,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	background: linear-gradient(to right,  #dddddd 0%,#f4f4f4 2%,#ffffff 7%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#ffffff',GradientType=1 );
+
+	
+	.nav.list-group{
+	    li{
+		    bdi{
+				display: block;
+			}
+	    	a,
+	    	bdi a{
+		    	display: block;
+			    padding: 10px 15px;
+				color:@link-color;
+				border-bottom:solid 1px #eee;
+				&:hover{
+					background:@gray-lighter;
+				}
+	    	}
+	    }
+	}
+}
+
+.pad{
+	margin-top: 2em;
+	.page{
+		.centeralign {
+			text-align: left;
+		}
+		.cloud{
+			font-size:1.25em;
+			margin:2.5em 4em;
+			text-align: center;
+		}
+	}
+}
+
+#wiki__editbar{
+	.editButtons{
+		margin:1em .25em;
+		
+		.button{
+			color:#000;
+		    padding:10px;
+			border-radius: .25em;
+			border:none;
+			background: #efefef;
+			margin-right:1em;
+			
+			&:hover,
+			&:focus{
+				background: @link-color;
+				color:#fff;
+			}
+		}
+		input[disabled="disabled"]{
+			&.button{
+				color:@gray;
+				background: @gray-lighter;
+			}
+			
+			&#edbtn__save.button{
+				color:@gray !important;
+				background: @gray-lighter;
+			}
+		}
+		#edbtn__save.button{
+			border:dashed 1px #ccc;
+			border-radius: .25em;
+			color:#eee !important;
+			background: darken(@link-color, 2%);
+			
+			&:hover,
+			&:focus{
+				background: lighten(@link-color, 2%);
+				color:#fff !important;
+			}
+		}
+		input[name="do[draftdel]"].button{
+			
+			&:hover,
+			&:focus{
+				background: #d00;
+				color:#fff;
+			}
+		}
+	}
+	.summary{
+		margin:.5em 0;
+	}
+}
+
+footer{
+	text-align: center;
+	.nav.navbar-nav{
+   	 	float:none;
+   	 	display: inline-block;
+	    li{
+		    bdi{
+				a{
+					color:@link-color;
+				}
+		    }
+		    a, 
+		    bdi a{
+			    color:@gray;
+			    padding:10px;
+				border-radius: .25em;
+				&:hover,
+				&:focus{
+					background: none;
+					color:@link-color;
+				}
+				
+			    &.action.edit,
+			    &.action.create{
+					border:dashed 1px #ddd;
+					border-radius: .25em;
+					color:@link-color;
+					&:hover,
+					&:focus{
+						background: @link-color;
+						color:@body-bg;
+					}
+				}
+				&.wikilink1{
+					color:@link-color;
+					&:hover,
+					&:focus{
+						background: @link-color;
+						color:@body-bg;
+					}
+				}
+		    }
+	    }
+	}	
+}
+
+@media (max-width: 980px) {
+    /* Enable use of floated navbar text */
+    .navbar-text.pull-right {
+      float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    /* The floating-to-the-side table of contents is cool, but, not if we're
+     * low on screen space! */
+    #sidetoc.affix {
+        position: static;
+        width: auto;
+        top: 0;
+  }
+}
+
+/* Rules to help make DokuWiki functionality a bit more useful/not so ugly. The
+ * DokuWiki CSS can clash with the Bootstrap CSS. 
+ * */
+#config__manager .label {
+    white-space: normal;
+}
+
+.editBar .edit,
+#dw__editform textarea 
+{
+    width: auto;
+}

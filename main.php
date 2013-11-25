@@ -7,6 +7,7 @@
  * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
  */
 
+		        
 if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 @require_once(dirname(__FILE__).'/tpl_functions.php'); /* include hook for template functions */
 
@@ -23,10 +24,7 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
-    <link href="<?php echo tpl_getMediaFile(array("css/modifications.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/dokuwikicompatibility.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/bootstrap.min.css")); ?>" rel="stylesheet">
-    <link href="<?php echo tpl_getMediaFile(array("css/bootstrap-theme.min.css")); ?>" rel="stylesheet">
+    <link href="<?php echo tpl_getMediaFile(array("css/style.css")); ?>" rel="stylesheet">
 
 </head>
 
@@ -54,6 +52,11 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
               <a class="navbar-brand" href="./"><?php echo $conf['title']; ?></a>
             </div>
           <div class="navbar-collapse collapse">
+          	<ul class="nav navbar-nav">
+		        <?php 
+		        	echo trim(strip_tags(html_entity_decode(tpl_include_page('wiki:topbar', false)), '<li><a>'));
+		        ?>
+		    </ul>
             <div class="navbar-form pull-right">
                 <?php _tpl_output_search_bar(); ?>
             </div>
@@ -62,19 +65,13 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
                 <?php
                     if ($_SERVER['REMOTE_USER']) {
                         echo '<span class="user">';
-                        tpl_userinfo();
+                        tpl_simple_userinfo();
                         echo '</span>';
                     }
                     //TODO: If could link to user's profile? If so, wrap in:
                     //echo 'Logged in as <a href="#" class="navbar-link">'.$username.'</a>';
                 ?>
             </p>
-            <ul class="nav navbar-nav">
-              <?php
-                tpl_includeFile('nav.html');
-                _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
-              ?>
-            </ul>
 
           </div><!--/.navbar-collapse -->
         </div>
@@ -83,73 +80,87 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
 
     <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
     <?php tpl_includeFile('header.html') ?>
-
-
         <div class="container">
         <!-- ********** ASIDE ********** -->
           <div class="row">
-            <div class="col-md-3">
-              <?php if ($conf['sidebar']) { ?>
-
-                  <div class="sidebar" id="sidetoc" role="navigation">
-                    <div class="list-group">
-                        <?php _tpl_toc_to_twitter_bootstrap(); ?>
-                    </div>
-                  </div>
-
-              <?php } ?>
-            </div>
             <div class="col-md-9">
               <div class="row">
-
-                    <div class="col-md-9" id="dokuwiki__content">
-
+                    <div id="dokuwiki__content">
                         <div class="pad">
-
                             <div class="page">
-
                                 <?php html_msgarea(); /* occasional error and info messages */ ?>
                                 <?php tpl_flush(); ?>
                                 <?php tpl_content(false); ?>
                                 <div class="clearer"></div>
-
                             </div>
-
                         </div>
                     </div>
               </div><!--/row-->
+              
+              <div class="row">
+	              <!-- ********** FOOTER ********** -->
+				    <footer class="navbar navbar-static-bottom">
+						<div class="container">
+					      <div class="row">
+					        <div class="col-md-9">
+					              <div>
+					              <hr />
+					              <?php 
+					              	$fn = $INFO['filepath'];
+								    if(!$conf['fullpath']) {
+								        if($INFO['rev']) {
+								            $fn = str_replace(fullpath($conf['olddir']).'/', '', $fn);
+								        } else {
+								            $fn = str_replace(fullpath($conf['datadir']).'/', '', $fn);
+								        }
+								    }
+								    $fn   = utf8_decodeFN($fn);
+					              	if($fn !== 'start.txt'){
+						              	tpl_simple_pageinfo();
+					              	}
+					              ?>
+					              <div class="clearer"></div>
+					              <?php _tpl_output_page_tools($showTools, 'li'); ?>
+								  <hr />
+					              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+					              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
+					              <?php //tpl_includeFile('footer.html') ?>
+					              </div>
+					              <div class="clearer"></div>
+					              <div>
+					                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
+					                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
+					                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
+					                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
+					                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
+					              </div>
+					        </div>
+					      </div>
+						  </div>
+				    </footer>
+              </div>
+              
             </div><!--/col-md-9-->
+            
+            <div class="col-md-3">
+            	<div class="sidebar" id="sidetoc" role="navigation">
+                    <div class="list-group">
+		             <?php if ($conf['sidebar']) { ?>
+		              	<?php _tpl_toc_to_twitter_bootstrap(); ?>
+		              <?php } ?>
+                    	<ul class="nav list-group">
+                    	  <li class="list-group-item nav-header">Tools</li>
+			              <?php
+			                _tpl_output_tools_twitter_bootstrap($conf['useacl'] && $showTools);
+			              ?>
+			            </ul>
+                    </div>
+                  </div>
+            </div>
           </div><!--/row-->
         </div><!-- container -->
-
         <div class="clearer"></div>
         <hr class="a11y" />
-
-    <!-- ********** FOOTER ********** -->
-    <footer class="navbar navbar-static-bottom">
-      <div class="row">
-        <div class="col-md-12">
-              <?php _tpl_output_page_tools($showTools, 'li'); ?>
-              <br />
-              <div class="clearer"></div>
-              <div>
-              <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-
-              <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
-              <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
-              <?php tpl_includeFile('footer.html') ?>
-              </div>
-              <div class="clearer"></div>
-              <div>
-                <p><a href="http://www.dokuwiki.org">DokuWiki</a>
-                    <a href="https://github.com/ryanwmoore/dokutwitterbootstrap">template</a>
-                    (released under <a href="http://www.gnu.org/licenses/gpl.html">GPLv2</a>)
-                    using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
-                    by <a href="http://rmoore.cs.pitt.edu/">Ryan W. Moore</a></p>
-              </div>
-        </div>
-      </div>
-    </footer>
 
     </div></div><!-- /site -->
 
@@ -157,12 +168,7 @@ $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && $_SERVER
     <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <!-- load any scripts that may require a newer jQuery library than DokuWiki provides. -->
     <script src="<?php echo tpl_getMediaFile(array("js/bootstrap.min.js")); ?>"></script>
-    <script src="<?php echo tpl_getMediaFile(array("js/change_dokuwiki_structure.js")); ?>"></script>
-
-    <!-- restore jQuery for DokuWiki -->
     <script src="<?php echo tpl_getMediaFile(array("js/restore_dokuwikis_jquery.js")); ?>"></script>
 </body>
 </html>
